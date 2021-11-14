@@ -2,8 +2,8 @@ import {Component, EventEmitter, OnInit} from '@angular/core'
 import {FileUploader} from 'ng2-file-upload'
 import {NgClass, NgStyle} from '@angular/common'
 
-const URL = '/upload/'
-// const URL = 'http://127.0.0.1:4201/upload/'
+const URL = '/api/upload/'
+// const URL = 'http://127.0.0.1:4201/api/upload/'
 
 @Component({
     selector: 'app-devicedesc-importdialog',

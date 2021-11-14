@@ -1,14 +1,32 @@
 import {Module} from '@nestjs/common'
+
+import {DeviceDescModule} from './devicedesc/devicedesc.module'
+import {DevicedescGroupModule} from './devicedesc-group/devicedesc-group.module'
+import {ClusternodeModule} from './clusternode/clusternode.module'
+import {ClustergroupModule} from './clustergroup/clustergroup.module'
+import {JobModule} from './job/job.module'
+import {JobgroupModule} from './jobgroup/jobgroup.module'
+
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
 import {AppUploadService} from './app.uploadService'
-import {DevicedescGroupController} from './devicedesc-group/devicedesc-group.controller'
-import {DevicedescController} from './devicedesc/devicedesc.controller'
 
 @Module({
-    imports: [],
-    controllers: [AppController, DevicedescGroupController, DevicedescController],
-    providers: [AppService, AppUploadService],
+    imports: [
+        DeviceDescModule,
+        DevicedescGroupModule,
+        ClusternodeModule,
+        ClustergroupModule,
+        JobModule,
+        JobgroupModule,
+    ],
+    controllers: [
+        AppController,
+    ],
+    providers: [
+        AppService,
+        AppUploadService,
+    ],
 })
 export class AppModule {
 }

@@ -18,7 +18,7 @@ export class AppController {
     ) {
     }
 
-    @Post('/upload')
+    @Post('/api/upload')
     @HttpCode(200)
     @UseInterceptors(FileInterceptor('file'))
     uploadFile(@UploadedFile() file) {

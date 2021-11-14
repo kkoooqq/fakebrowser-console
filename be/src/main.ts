@@ -4,7 +4,7 @@ import {NestExpressApplication} from '@nestjs/platform-express'
 import * as path from 'path'
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule)
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {cors: true})
     // app.setBaseViewsDir(path.resolve(__dirname, '../../fe/dist/fakebrowser-console'))
     // app.enableCors({
     //     origin: true,

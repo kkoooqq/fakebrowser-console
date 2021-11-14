@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatTableModule} from '@angular/material/table'
+import {MatTabsModule} from '@angular/material/tabs'
 
 import {FileUploadModule } from 'ng2-file-upload'
 
@@ -21,7 +22,7 @@ import {DashboardComponent} from './dashboard/dashboard.component'
 import {ClusterNodeComponent} from './clusternode/clusternode.component'
 import {DeviceDescComponent} from './devicedesc/devicedesc.component'
 import {ProxyComponent} from './proxy/proxy.component'
-import {TaskComponent} from './task/task.component'
+import {JobComponent} from './job/job.component'
 import {SettingsComponent} from './settings/settings.component'
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component'
 import {ControlpanelComponent} from './controlpanel/controlpanel.component'
@@ -38,7 +39,7 @@ import {MatSortModule} from '@angular/material/sort'
         ClusterNodeComponent,
         DeviceDescComponent,
         ProxyComponent,
-        TaskComponent,
+        JobComponent,
         SettingsComponent,
         PageNotFoundComponent,
         ControlpanelComponent,
@@ -57,6 +58,7 @@ import {MatSortModule} from '@angular/material/sort'
         MatButtonModule,
         MatDialogModule,
         MatSortModule,
+        MatTabsModule,
         FileUploadModule,
     ],
     providers: [],
