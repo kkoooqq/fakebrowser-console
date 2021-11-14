@@ -1,4 +1,4 @@
-import {DeleteResult, Repository, UpdateResult} from 'typeorm'
+import {DeleteResult, InsertResult, Repository, UpdateResult} from 'typeorm'
 import {DeviceDesc} from './devicedesc.entity'
 import {Inject, Injectable} from '@nestjs/common'
 import {DEVICE_DESC_REPOSITORY} from '../constants'
@@ -12,7 +12,8 @@ export class DeviceDescService {
     }
 
     async create(dd: DeviceDesc): Promise<DeviceDesc> {
-        return this.deviceDescRepository.create(dd)
+        const insertResult: InsertResult = await this.deviceDescRepository.insert(dd)
+        return insertResult.generatedMaps[0] as DeviceDesc
     }
 
     async update(dd: DeviceDesc): Promise<UpdateResult> {
@@ -21,6 +22,17 @@ export class DeviceDescService {
 
     async getAll(): Promise<DeviceDesc[]> {
         return await this.deviceDescRepository.find()
+    }
+
+    async get(id: number): Promise<DeviceDesc> {
+        return await this.deviceDescRepository.findOne(id)
+    }
+
+    async getPage(page: number, per_page: number): Promise<DeviceDesc[]> {
+        return await this.deviceDescRepository.find({
+            skip: (page - 1) * per_page,
+            take: per_page,
+        })
     }
 
     async delete(id): Promise<DeleteResult> {
