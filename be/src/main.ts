@@ -6,8 +6,14 @@ import * as path from 'path'
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule)
     // app.setBaseViewsDir(path.resolve(__dirname, '../../fe/dist/fakebrowser-console'))
+    // app.enableCors({
+    //     origin: true,
+    //     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    //     allowedHeaders: 'X-Requested-With,content-type',
+    //     credentials: true,
+    // })
 
-    app.useStaticAssets(path.resolve(__dirname, '../../fe/dist/fakebrowser-console'),{
+    app.useStaticAssets(path.resolve(__dirname, '../../fe/dist/fakebrowser-console'), {
         prefix: '/',
     })
 

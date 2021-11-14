@@ -69,22 +69,22 @@
           <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
         </div>
       </div>
-      <button type="button" class="btn btn-success btn-s"
-              (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-        <span class="glyphicon glyphicon-upload"></span> Upload all
-      </button>
-      <button type="button" class="btn btn-warning btn-s"
-              (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-        <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-      </button>
-      <button type="button" class="btn btn-danger btn-s"
-              (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-        <span class="glyphicon glyphicon-trash"></span> Remove all
-      </button>
     </div>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+  <button *ngIf="uploader.queue.length > 0" mat-button
+          (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+    <span class="glyphicon glyphicon-upload"></span> Upload all
+  </button>
+  <button *ngIf="uploader.queue.length > 0" mat-button
+          (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+  </button>
+  <button *ngIf="uploader.queue.length > 0" mat-button
+          (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+    <span class="glyphicon glyphicon-trash"></span> Remove all
+  </button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
 </mat-dialog-actions>
 
