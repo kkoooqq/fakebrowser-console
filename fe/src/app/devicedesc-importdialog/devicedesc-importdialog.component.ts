@@ -1,5 +1,8 @@
 import {Component, EventEmitter, OnInit} from '@angular/core'
-import {UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, UploadStatus} from 'ngx-uploader'
+import {FileUploader} from 'ng2-file-upload'
+
+// const URL = '/upload/'
+const URL = 'http://127.0.0.1:4201/upload/'
 
 @Component({
     selector: 'app-devicedesc-importdialog',
@@ -7,79 +10,37 @@ import {UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, U
     styleUrls: ['./devicedesc-importdialog.component.css'],
 })
 export class DeviceDescImportDialogComponent implements OnInit {
-    url = '/upload'
-    // formData: FormData
-    files: UploadFile[]
-    uploadInput: EventEmitter<UploadInput>
-    humanizeBytes: Function
-    dragOver: boolean = false
-    options: UploaderOptions
+    uploader: FileUploader
+    hasBaseDropZoneOver: boolean
+    response: string
 
     constructor() {
-        this.options = {
-            concurrency: 10,
-            maxUploads: 100 * 100,
-            maxFileSize: 1000000,
-        }
+        this.uploader = new FileUploader({
+            url: URL,
+            disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+            formatDataFunctionIsAsync: true,
+            formatDataFunction: async (item: any) => {
+                return new Promise((resolve, reject) => {
+                    resolve({
+                        name: item._file.name,
+                        length: item._file.size,
+                        contentType: item._file.type,
+                        date: new Date(),
+                    })
+                })
+            },
+        })
 
-        this.files = []
-        this.uploadInput = new EventEmitter<UploadInput>()
-        this.humanizeBytes = humanizeBytes
+        this.hasBaseDropZoneOver = false
+        this.response = ''
+
+        this.uploader.response.subscribe(res => this.response = res)
     }
 
     ngOnInit(): void {
     }
 
-    onUploadOutput(output: UploadOutput): void {
-        if (output.type === 'allAddedToQueue') {
-            const event: UploadInput = {
-                type: 'uploadAll',
-                url: this.url,
-                method: 'POST',
-                data: {foo: 'bar'},
-            }
-
-            this.uploadInput.emit(event)
-        } else if (output.type === 'addedToQueue' && typeof output.file !== 'undefined') {
-            this.files.push(output.file)
-        } else if (output.type === 'uploading' && typeof output.file !== 'undefined') {
-            const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id)
-            this.files[index] = output.file
-        } else if (output.type === 'cancelled' || output.type === 'removed') {
-            this.files = this.files.filter((file: UploadFile) => file !== output.file)
-        } else if (output.type === 'dragOver') {
-            this.dragOver = true
-        } else if (output.type === 'dragOut') {
-            this.dragOver = false
-        } else if (output.type === 'drop') {
-            this.dragOver = false
-        } else if (output.type === 'rejected' && typeof output.file !== 'undefined') {
-            console.log(output.file.name + ' rejected')
-        }
-
-        this.files = this.files.filter(file => file.progress.status !== UploadStatus.Done)
-    }
-
-    startUpload(): void {
-        const event: UploadInput = {
-            type: 'uploadAll',
-            url: this.url,
-            method: 'POST',
-            data: {foo: 'bar'},
-        }
-
-        this.uploadInput.emit(event)
-    }
-
-    cancelUpload(id: string): void {
-        this.uploadInput.emit({type: 'cancel', id: id})
-    }
-
-    removeFile(id: string): void {
-        this.uploadInput.emit({type: 'remove', id: id})
-    }
-
-    removeAllFiles(): void {
-        this.uploadInput.emit({type: 'removeAll'})
+    public fileOverBase(e: any): void {
+        this.hasBaseDropZoneOver = e
     }
 }

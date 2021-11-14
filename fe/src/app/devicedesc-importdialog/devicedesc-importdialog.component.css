@@ -1,0 +1,25 @@
+.my-drop-zone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: dotted 3px lightgray;
+  height: 100px;
+  padding: 20px;
+}
+
+.nv-file-over {
+  border: dotted 3px red;
+}
+
+.upload-button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0 2px;
+}
+
+.upload-button input {
+  display: none;
+}
