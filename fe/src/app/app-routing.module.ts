@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ClusterNodeComponent} from "./clusternode/clusternode.component";
-import {DeviceDescComponent} from "./devicedesc/devicedesc.component";
-import {ProxyComponent} from "./proxy/proxy.component";
-import {JobComponent} from "./job/job.component";
-import {SettingsComponent} from "./settings/settings.component";
-import {PageNotFoundComponent} from "./pagenotfound/pagenotfound.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {ClusterNodeComponent} from "./components/clusternode/clusternode.component";
+import {DeviceDescComponent} from "./components/devicedesc/devicedesc.component";
+import {ProxyComponent} from "./components/proxy/proxy.component";
+import {JobComponent} from "./components/job/job.component";
+import {SettingsComponent} from "./components/settings/settings.component";
+import {PageNotFoundComponent} from "./components/pagenotfound/pagenotfound.component";
 
 const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
