@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class NavComponent implements OnInit {
 
   constructor() { }
 

@@ -11,9 +11,9 @@ import {MatIconModule} from '@angular/material/icon'
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
+import {NavComponent} from './nav/nav.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {ClusternodeComponent} from './clusternode/clusternode.component';
+import {ClusterNodeComponent} from './clusternode/clusternode.component';
 import {DeviceDescComponent} from './devicedesc/devicedesc.component';
 import {ProxyComponent} from './proxy/proxy.component';
 import {TaskComponent} from './task/task.component';
@@ -24,9 +24,9 @@ import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
     declarations: [
         AppComponent,
         LoginComponent,
-        SidebarComponent,
+        NavComponent,
         DashboardComponent,
-        ClusternodeComponent,
+        ClusterNodeComponent,
         DeviceDescComponent,
         ProxyComponent,
         TaskComponent,

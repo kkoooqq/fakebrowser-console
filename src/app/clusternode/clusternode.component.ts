@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './clusternode.component.html',
   styleUrls: ['./clusternode.component.css']
 })
-export class ClusternodeComponent implements OnInit {
+export class ClusterNodeComponent implements OnInit {
 
   constructor() { }
 

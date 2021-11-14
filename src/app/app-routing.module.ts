@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ClusternodeComponent} from "./clusternode/clusternode.component";
+import {ClusterNodeComponent} from "./clusternode/clusternode.component";
 import {DeviceDescComponent} from "./devicedesc/devicedesc.component";
 import {ProxyComponent} from "./proxy/proxy.component";
 import {TaskComponent} from "./task/task.component";
@@ -12,7 +12,7 @@ import {PageNotFoundComponent} from "./pagenotfound/pagenotfound.component";
 const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-    {path: 'clusternode', component: ClusternodeComponent},
+    {path: 'clusternode', component: ClusterNodeComponent},
     {path: 'devicedesc', component: DeviceDescComponent},
     {path: 'proxy', component: ProxyComponent},
     {path: 'task', component: TaskComponent},

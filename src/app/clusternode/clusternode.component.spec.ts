@@ -1,20 +1,20 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ClusternodeComponent} from './clusternode.component';
+import {ClusterNodeComponent} from './clusternode.component';
 
 describe('ClusternodeComponent', () => {
-    let component: ClusternodeComponent;
-    let fixture: ComponentFixture<ClusternodeComponent>;
+    let component: ClusterNodeComponent;
+    let fixture: ComponentFixture<ClusterNodeComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ClusternodeComponent]
+            declarations: [ClusterNodeComponent]
         })
             .compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ClusternodeComponent);
+        fixture = TestBed.createComponent(ClusterNodeComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
