@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core'
+import {BrowserModule} from '@angular/platform-browser'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 // materials
 import {MatToolbarModule} from '@angular/material/toolbar'
@@ -9,21 +9,25 @@ import {MatListModule} from '@angular/material/list'
 import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
 import {MatDialogModule} from '@angular/material/dialog'
+import {MatTableModule} from '@angular/material/table'
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {NavComponent} from './nav/nav.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {ClusterNodeComponent} from './clusternode/clusternode.component';
-import {DeviceDescComponent} from './devicedesc/devicedesc.component';
-import {ProxyComponent} from './proxy/proxy.component';
-import {TaskComponent} from './task/task.component';
-import {SettingsComponent} from './settings/settings.component';
-import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
-import {ControlpanelComponent} from './controlpanel/controlpanel.component';
-import { DeviceDescStatDialogComponent } from './devicedesc-statdialog/devicedesc-statdialog.component';
-import { DeviceDescImportDialogComponent } from './devicedesc-importdialog/devicedesc-importdialog.component';
+// import {NgxUploaderModule} from 'ngx-uploader'
+
+import {AppRoutingModule} from './app-routing.module'
+import {AppComponent} from './app.component'
+import {LoginComponent} from './login/login.component'
+import {NavComponent} from './nav/nav.component'
+import {DashboardComponent} from './dashboard/dashboard.component'
+import {ClusterNodeComponent} from './clusternode/clusternode.component'
+import {DeviceDescComponent} from './devicedesc/devicedesc.component'
+import {ProxyComponent} from './proxy/proxy.component'
+import {TaskComponent} from './task/task.component'
+import {SettingsComponent} from './settings/settings.component'
+import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component'
+import {ControlpanelComponent} from './controlpanel/controlpanel.component'
+import {DeviceDescStatDialogComponent} from './devicedesc-statdialog/devicedesc-statdialog.component'
+import {DeviceDescImportDialogComponent} from './devicedesc-importdialog/devicedesc-importdialog.component'
+import {MatSortModule} from '@angular/material/sort'
 
 @NgModule({
     declarations: [
@@ -39,7 +43,7 @@ import { DeviceDescImportDialogComponent } from './devicedesc-importdialog/devic
         PageNotFoundComponent,
         ControlpanelComponent,
         DeviceDescStatDialogComponent,
-        DeviceDescImportDialogComponent
+        DeviceDescImportDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -49,11 +53,14 @@ import { DeviceDescImportDialogComponent } from './devicedesc-importdialog/devic
         MatSidenavModule,
         MatListModule,
         MatIconModule,
+        MatTableModule,
         MatButtonModule,
         MatDialogModule,
+        MatSortModule,
+        // NgxUploaderModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {
 }

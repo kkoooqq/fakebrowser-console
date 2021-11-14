@@ -25,6 +25,7 @@
     "express": "^4.17.1",
     "fakebrowser": "^0.0.54",
     "mongodb": "^4.1.4",
+    "ngx-uploader": "^11.0.0",
     "puppeteer": "^11.0.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog'
 
-import {DeviceDescStatDialogComponent} from "../devicedesc-statdialog/devicedesc-statdialog.component";
-import {DeviceDescImportDialogComponent} from "../devicedesc-importdialog/devicedesc-importdialog.component";
+import {DeviceDescStatDialogComponent} from '../devicedesc-statdialog/devicedesc-statdialog.component'
+import {DeviceDescImportDialogComponent} from '../devicedesc-importdialog/devicedesc-importdialog.component'
 
 @Component({
     selector: 'app-devicedesc',
     templateUrl: './devicedesc.component.html',
-    styleUrls: ['./devicedesc.component.css']
+    styleUrls: ['./devicedesc.component.css'],
 })
 export class DeviceDescComponent implements OnInit {
 

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
-  selector: 'app-devicedesc-importdialog',
-  templateUrl: './devicedesc-importdialog.component.html',
-  styleUrls: ['./devicedesc-importdialog.component.css']
+    selector: 'app-devicedesc-importdialog',
+    templateUrl: './devicedesc-importdialog.component.html',
+    styleUrls: ['./devicedesc-importdialog.component.css'],
 })
 export class DeviceDescImportDialogComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }
