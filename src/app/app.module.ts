@@ -7,6 +7,8 @@ import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatListModule} from '@angular/material/list'
 import {MatIconModule} from '@angular/material/icon'
+import {MatButtonModule} from '@angular/material/button'
+import {MatDialogModule} from '@angular/material/dialog'
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -19,6 +21,9 @@ import {ProxyComponent} from './proxy/proxy.component';
 import {TaskComponent} from './task/task.component';
 import {SettingsComponent} from './settings/settings.component';
 import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
+import {ControlpanelComponent} from './controlpanel/controlpanel.component';
+import { DeviceDescStatDialogComponent } from './devicedesc-statdialog/devicedesc-statdialog.component';
+import { DeviceDescImportDialogComponent } from './devicedesc-importdialog/devicedesc-importdialog.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +36,10 @@ import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
         ProxyComponent,
         TaskComponent,
         SettingsComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        ControlpanelComponent,
+        DeviceDescStatDialogComponent,
+        DeviceDescImportDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -41,6 +49,8 @@ import {PageNotFoundComponent} from './pagenotfound/pagenotfound.component';
         MatSidenavModule,
         MatListModule,
         MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
