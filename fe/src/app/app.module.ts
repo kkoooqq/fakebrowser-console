@@ -11,7 +11,7 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatTableModule} from '@angular/material/table'
 
-// import {NgxUploaderModule} from 'ngx-uploader'
+import {NgxUploaderModule} from 'ngx-uploader'
 
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
@@ -57,7 +57,7 @@ import {MatSortModule} from '@angular/material/sort'
         MatButtonModule,
         MatDialogModule,
         MatSortModule,
-        // NgxUploaderModule,
+        NgxUploaderModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
