@@ -1,16 +1,20 @@
 /* Structure */
 .example-container {
-  position: relative;
-  min-height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 
 .example-table-container {
-  position: relative;
-  max-height: 400px;
-  overflow: auto;
+  flex: 1;
 }
 
 table {
+  width: 100%;
+}
+
+.mat-table {
+  height: calc(100vh - 180px);
+  overflow: auto;
   width: 100%;
 }
 

@@ -1,4 +1,4 @@
-<ng-container>
+<ng-container style="display: flex; height: 100%">
   <mat-toolbar>
     <button mat-flat-button (click)="openGroupStatDialog()">
       <mat-icon>batch_prediction</mat-icon>
@@ -56,6 +56,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDeviceDescDialog(row)"></tr>
       </table>
     </div>
-    <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [length]="resultsLength" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
   </div>
 </ng-container>
