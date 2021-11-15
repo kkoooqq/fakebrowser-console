@@ -1,6 +1,5 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common'
 import {DeviceDescGroupService} from './devicedesc-group.service'
-import {DeleteResult, UpdateResult} from 'typeorm'
 import {DeviceDescGroup} from './devicedesc-group.entity'
 
 @Controller('/api/devicedesc-group')
@@ -30,16 +29,15 @@ export class DeviceDescGroupController {
         return this.deviceDescGroupService.get(id)
     }
 
-    @Put(':id')
-    update(@Param('id') id, @Body() dd: DeviceDescGroup): Promise<UpdateResult> {
-        dd.id = Number(id)
+    @Put()
+    async update(@Body() dd: DeviceDescGroup): Promise<boolean> {
         console.log('Update #' + dd.id)
-        return this.deviceDescGroupService.update(dd)
+        return (await this.deviceDescGroupService.update(dd)).affected > 0
     }
 
     @Delete(':id')
-    async delete(@Param('id') id): Promise<DeleteResult> {
-        return this.deviceDescGroupService.delete(id)
+    async delete(@Param('id') id): Promise<boolean> {
+        return (await this.deviceDescGroupService.delete(id)).affected > 0
     }
 
 }

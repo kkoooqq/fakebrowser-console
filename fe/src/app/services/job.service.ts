@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core'
-import {DeleteResult, UpdateResult} from 'typeorm'
 
 import {HttpClient} from '@angular/common/http'
 import {Observable} from 'rxjs'
@@ -30,8 +29,8 @@ export class JobService {
         return this.http.post<JobEntity>(url, job)
     }
 
-    update(job: JobEntity): Observable<UpdateResult> {
+    update(job: JobEntity): Observable<boolean> {
         const url = '/api/job'
-        return this.http.put<UpdateResult>(url, job)
+        return this.http.put<boolean>(url, job)
     }
 }

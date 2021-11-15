@@ -1,7 +1,6 @@
 import {Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UploadedFile, UseInterceptors} from '@nestjs/common'
 import {DeviceDescService} from './devicedesc.service'
 import {DeviceDesc} from './devicedesc.entity'
-import {DeleteResult, UpdateResult} from 'typeorm'
 import {FileInterceptor} from '@nestjs/platform-express'
 
 @Controller('/api/devicedesc')
@@ -32,14 +31,14 @@ export class DeviceDescController {
     }
 
     @Put()
-    update(@Body() dd: DeviceDesc): Promise<UpdateResult> {
+    async update(@Body() dd: DeviceDesc): Promise<boolean> {
         console.log('Update #' + dd.id)
-        return this.deviceDescService.update(dd)
+        return (await this.deviceDescService.update(dd)).affected > 0
     }
 
     @Delete(':id')
-    async delete(@Param('id') id): Promise<DeleteResult> {
-        return this.deviceDescService.delete(id)
+    async delete(@Param('id') id): Promise<boolean> {
+        return (await this.deviceDescService.delete(id)).affected > 0
     }
 
     @Post('/upload')

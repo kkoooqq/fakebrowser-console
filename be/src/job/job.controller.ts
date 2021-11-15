@@ -1,5 +1,4 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common'
-import {DeleteResult, UpdateResult} from 'typeorm'
 import {JobService} from './job.service'
 import {Job} from './job.entity'
 
@@ -31,14 +30,14 @@ export class JobController {
     }
 
     @Put()
-    update(@Body() dd: Job): Promise<UpdateResult> {
+    async update(@Body() dd: Job): Promise<boolean> {
         console.log('Update #' + dd.id)
-        return this.deviceDescService.update(dd)
+        return (await this.deviceDescService.update(dd)).affected > 0
     }
 
     @Delete(':id')
-    async delete(@Param('id') id): Promise<DeleteResult> {
-        return this.deviceDescService.delete(id)
+    async delete(@Param('id') id): Promise<boolean> {
+        return (await this.deviceDescService.delete(id)).affected > 0
     }
 
 }
