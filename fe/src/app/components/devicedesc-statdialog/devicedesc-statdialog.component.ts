@@ -1,14 +1,9 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core'
-
-import {MatSort} from '@angular/material/sort'
+import {AfterViewInit, Component, OnInit} from '@angular/core'
 import {MatTableDataSource} from '@angular/material/table'
+import {DeviceDescGroupService} from '../../services/devicedesc-group.service'
+import {DeviceDescGroupEntity} from '../../interfaces/devicedesc-group'
 
-export interface DeviceDescStat {
-    name: string,
-    count: number,
-}
-
-const kGroupStatArray: DeviceDescStat[] = [{
+const kGroupStatArray: DeviceDescGroupEntity[] = [{
     name: 'Windows',
     count: 0,
 }, {
@@ -37,7 +32,15 @@ export class DeviceDescStatDialogComponent implements OnInit, AfterViewInit {
 
     dataSource = new MatTableDataSource(kGroupStatArray)
 
+    constructor(
+        private readonly deviceDescGroupService: DeviceDescGroupService,
+    ) {
+    }
+
     ngOnInit(): void {
+        this.deviceDescGroupService.getAll().subscribe((ddGroups) => {
+            this.dataSource = new MatTableDataSource(ddGroups)
+        })
     }
 
     ngAfterViewInit() {

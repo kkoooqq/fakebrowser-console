@@ -12,9 +12,12 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatTableModule} from '@angular/material/table'
 import {MatTabsModule} from '@angular/material/tabs'
+import {MatSortModule} from '@angular/material/sort'
 
+// 3party
 import {FileUploadModule} from 'ng2-file-upload'
 
+// modules
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {LoginComponent} from './components/login/login.component'
@@ -29,7 +32,10 @@ import {PageNotFoundComponent} from './components/pagenotfound/pagenotfound.comp
 import {ControlpanelComponent} from './components/controlpanel/controlpanel.component'
 import {DeviceDescStatDialogComponent} from './components/devicedesc-statdialog/devicedesc-statdialog.component'
 import {DeviceDescImportDialogComponent} from './components/devicedesc-importdialog/devicedesc-importdialog.component'
-import {MatSortModule} from '@angular/material/sort'
+
+// services
+import {DeviceDescService} from './services/devicedesc.service'
+import {DeviceDescGroupService} from './services/devicedesc-group.service'
 
 @NgModule({
     declarations: [
@@ -63,7 +69,10 @@ import {MatSortModule} from '@angular/material/sort'
         MatTabsModule,
         FileUploadModule,
     ],
-    providers: [],
+    providers: [
+        DeviceDescService,
+        DeviceDescGroupService,
+    ],
     bootstrap: [
         AppComponent,
     ],

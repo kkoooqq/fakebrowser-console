@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core'
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog'
 
+import {DeviceDescService} from '../../services/devicedesc.service'
+
 import {DeviceDescStatDialogComponent} from '../devicedesc-statdialog/devicedesc-statdialog.component'
 import {DeviceDescImportDialogComponent} from '../devicedesc-importdialog/devicedesc-importdialog.component'
 
@@ -12,6 +14,7 @@ import {DeviceDescImportDialogComponent} from '../devicedesc-importdialog/device
 export class DeviceDescComponent implements OnInit {
 
     constructor(
+        private deviceDescService: DeviceDescService,
         public statDialog: MatDialog,
         public importDialog: MatDialog,
     ) {
