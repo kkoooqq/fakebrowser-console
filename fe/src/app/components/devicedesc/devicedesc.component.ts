@@ -9,6 +9,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators'
 import {DeviceDescService} from '../../services/devicedesc.service'
 import {DeviceDescStatDialogComponent} from '../devicedesc-statdialog/devicedesc-statdialog.component'
 import {DeviceDescImportDialogComponent} from '../devicedesc-importdialog/devicedesc-importdialog.component'
+import {DeviceDescDetailsDialogComponent} from '../devicedesc-detailsdialog/devicedesc-detailsdialog.component'
 import {DeviceDescEntity} from '../../interfaces/devicedesc'
 
 @Component({
@@ -25,9 +26,10 @@ export class DeviceDescComponent implements OnInit, AfterViewInit {
     @ViewChild(MatPaginator) paginator: MatPaginator
 
     constructor(
-        private deviceDescService: DeviceDescService,
-        public statDialog: MatDialog,
-        public importDialog: MatDialog,
+        private readonly deviceDescService: DeviceDescService,
+        public readonly statDialog: MatDialog,
+        public readonly importDialog: MatDialog,
+        private readonly deviceDescDetailsDialog: MatDialog,
     ) {
     }
 
@@ -47,7 +49,7 @@ export class DeviceDescComponent implements OnInit, AfterViewInit {
                 }),
                 map(data => {
                     this.isLoadingResults = false
-                    this.resultsLength = data[1];
+                    this.resultsLength = data[1]
                     return data
                 }),
                 catchError(() => {
@@ -63,6 +65,12 @@ export class DeviceDescComponent implements OnInit, AfterViewInit {
 
     openImportDialog() {
         const dialog = this.importDialog.open(DeviceDescImportDialogComponent)
+    }
+
+    openDeviceDescDialog(deviceDesc: DeviceDescEntity) {
+        const dialog = this.deviceDescDetailsDialog.open(DeviceDescDetailsDialogComponent, {
+            data: deviceDesc,
+        })
     }
 
 }

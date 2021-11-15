@@ -34,6 +34,7 @@ import {PageNotFoundComponent} from './components/pagenotfound/pagenotfound.comp
 import {ControlpanelComponent} from './components/controlpanel/controlpanel.component'
 import {DeviceDescStatDialogComponent} from './components/devicedesc-statdialog/devicedesc-statdialog.component'
 import {DeviceDescImportDialogComponent} from './components/devicedesc-importdialog/devicedesc-importdialog.component'
+import {DeviceDescDetailsDialogComponent} from './components/devicedesc-detailsdialog/devicedesc-detailsdialog.component'
 
 // services
 import {DeviceDescService} from './services/devicedesc.service'
@@ -54,6 +55,7 @@ import {DeviceDescGroupService} from './services/devicedesc-group.service'
         ControlpanelComponent,
         DeviceDescStatDialogComponent,
         DeviceDescImportDialogComponent,
+        DeviceDescDetailsDialogComponent,
     ],
     imports: [
         HttpClientModule,
