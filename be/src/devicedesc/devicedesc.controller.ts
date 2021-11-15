@@ -1,8 +1,9 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common'
+import {Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UploadedFile, UseInterceptors} from '@nestjs/common'
 import {deviceDescProviders} from './devicedesc.provider'
 import {DeviceDescService} from './devicedesc.service'
 import {DeviceDesc} from './devicedesc.entity'
 import {DeleteResult, UpdateResult} from 'typeorm'
+import {FileInterceptor} from '@nestjs/platform-express'
 
 @Controller('/api/devicedesc')
 export class DeviceDescController {
@@ -42,4 +43,28 @@ export class DeviceDescController {
     async delete(@Param('id') id): Promise<DeleteResult> {
         return this.deviceDescService.delete(id)
     }
+
+    @Post('/upload')
+    @HttpCode(200)
+    @UseInterceptors(FileInterceptor('file'))
+    async uploadFile(@UploadedFile() file) {
+        const {
+            fieldname,
+            originalname,
+            encoding,
+            mimetype,
+            buffer,
+            size,
+        } = file
+
+        // application/json
+        // application/zip
+
+        if (mimetype === 'application/json') {
+            await this.deviceDescService.saveJson(buffer.toString())
+        }
+
+        return file
+    }
+
 }

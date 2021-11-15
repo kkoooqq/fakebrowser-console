@@ -27,6 +27,11 @@
           <th mat-header-cell *matHeaderCellDef>Platform</th>
           <td mat-cell *matCellDef="let row">{{row.platform}}</td>
         </ng-container>
+        <!-- browser Column -->
+        <ng-container matColumnDef="browser">
+          <th mat-header-cell *matHeaderCellDef>Browser</th>
+          <td mat-cell *matCellDef="let row">{{row.browser}}</td>
+        </ng-container>
         <!-- userAgent Column -->
         <ng-container matColumnDef="userAgent">
           <th mat-header-cell *matHeaderCellDef>UserAgent</th>

@@ -17,11 +17,4 @@ export class AppController {
         private readonly appUploadService: AppUploadService,
     ) {
     }
-
-    @Post('/api/upload')
-    @HttpCode(200)
-    @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file) {
-        return file
-    }
 }

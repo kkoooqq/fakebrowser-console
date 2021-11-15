@@ -2,7 +2,8 @@ import {Component, EventEmitter, OnInit} from '@angular/core'
 import {FileUploader} from 'ng2-file-upload'
 import {NgClass, NgStyle} from '@angular/common'
 
-const URL = '/api/upload/'
+const URL = '/api/devicedesc/upload/'
+
 // const URL = 'http://127.0.0.1:4201/api/upload/'
 
 @Component({
@@ -24,7 +25,9 @@ export class DeviceDescImportDialogComponent implements OnInit {
         this.hasBaseDropZoneOver = false
         this.response = ''
 
-        this.uploader.response.subscribe(res => this.response = res)
+        this.uploader.response.subscribe(res => {
+            this.response = res
+        })
     }
 
     ngOnInit(): void {

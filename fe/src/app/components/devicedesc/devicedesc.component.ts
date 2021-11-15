@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core'
+import {AfterViewInit, Component, EventEmitter, OnInit, ViewChild} from '@angular/core'
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog'
 import {MatPaginator} from '@angular/material/paginator'
 import {MatTableDataSource} from '@angular/material/table'
@@ -19,11 +19,12 @@ import {DeviceDescEntity} from '../../interfaces/devicedesc'
 })
 export class DeviceDescComponent implements OnInit, AfterViewInit {
 
-    displayedColumns: string[] = ['id', 'platform', 'userAgent', 'screen_width', 'screen_height', 'languages']
+    displayedColumns: string[] = ['id', 'platform', 'browser', 'userAgent', 'screen_width', 'screen_height', 'languages']
     data: DeviceDescEntity[] = []
     resultsLength = 0
     isLoadingResults = true
     @ViewChild(MatPaginator) paginator: MatPaginator
+    onImportDialogClosed: EventEmitter<any>
 
     constructor(
         private readonly deviceDescService: DeviceDescService,
@@ -31,13 +32,14 @@ export class DeviceDescComponent implements OnInit, AfterViewInit {
         public readonly importDialog: MatDialog,
         private readonly deviceDescDetailsDialog: MatDialog,
     ) {
+        this.onImportDialogClosed = new EventEmitter<any>()
     }
 
     ngOnInit(): void {
     }
 
     ngAfterViewInit(): void {
-        merge(this.paginator.page)
+        merge(this.paginator.page, this.onImportDialogClosed)
             .pipe(
                 startWith({}),
                 switchMap(() => {
@@ -70,6 +72,10 @@ export class DeviceDescComponent implements OnInit, AfterViewInit {
     openDeviceDescDialog(deviceDesc: DeviceDescEntity) {
         const dialog = this.deviceDescDetailsDialog.open(DeviceDescDetailsDialogComponent, {
             data: deviceDesc,
+        })
+
+        dialog.afterClosed().subscribe(() => {
+            this.onImportDialogClosed.emit()
         })
     }
 

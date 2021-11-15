@@ -17,6 +17,9 @@ export class DeviceDesc {
     @Column({length: 100})
     platform: string
 
+    @Column({length: 100})
+    browser: string
+
     @Column('int')
     screen_width: number
 
@@ -26,7 +29,7 @@ export class DeviceDesc {
     @Column({length: 300})
     languages: string
 
-    @Column()
+    @Column('longtext')
     deviceDesc: string
 
     @Column()

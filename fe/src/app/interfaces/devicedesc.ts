@@ -4,6 +4,7 @@ export interface DeviceDescEntity {
     group_id: number
     userAgent: string
     platform: string
+    browser: string
     screen_width: number
     screen_height: number
     languages: string

@@ -2,6 +2,8 @@ import {DeleteResult, InsertResult, Repository, UpdateResult} from 'typeorm'
 import {DeviceDesc} from './devicedesc.entity'
 import {Inject, Injectable} from '@nestjs/common'
 import {DEVICE_DESC_REPOSITORY} from '../constants'
+import {helper} from '../helper'
+import {UserAgentHelper} from '../UserAgentHelper'
 
 @Injectable()
 export class DeviceDescService {
@@ -37,5 +39,38 @@ export class DeviceDescService {
 
     async delete(id): Promise<DeleteResult> {
         return await this.deviceDescRepository.delete(id)
+    }
+
+    async saveJson(json: string): Promise<DeviceDesc> {
+        const jsonObj = JSON.parse(json)
+        const jsonString = JSON.stringify(jsonObj)
+
+        // check if md5 already exists
+        const jsonMD5 = helper.md5(jsonString)
+
+        if (await this.deviceDescRepository.count({
+            where: {
+                md5: jsonMD5,
+            },
+        })) {
+            return null
+        }
+
+        // create new entity
+        const entity = new DeviceDesc()
+        entity.name = ''
+        entity.group_id = 0
+        entity.userAgent = jsonObj.navigator.userAgent
+        entity.platform = UserAgentHelper.os(jsonObj.navigator.userAgent)
+        entity.browser = UserAgentHelper.browserType(jsonObj.navigator.userAgent)
+        entity.screen_width = jsonObj.screen.width
+        entity.screen_height = jsonObj.screen.height
+        entity.languages = jsonObj.navigator.languages.join(',')
+        entity.deviceDesc = jsonString
+        entity.md5 = jsonMD5
+        entity.created = new Date()
+        entity.updated = new Date()
+
+        return await this.create(entity)
     }
 }
