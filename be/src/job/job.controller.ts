@@ -30,9 +30,8 @@ export class JobController {
         return this.deviceDescService.get(id)
     }
 
-    @Put(':id')
-    update(@Param('id') id, @Body() dd: Job): Promise<UpdateResult> {
-        dd.id = Number(id)
+    @Put()
+    update(@Body() dd: Job): Promise<UpdateResult> {
         console.log('Update #' + dd.id)
         return this.deviceDescService.update(dd)
     }

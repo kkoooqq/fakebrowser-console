@@ -8,7 +8,7 @@ import {DevicedescGroupModule} from './devicedesc-group/devicedesc-group.module'
 import {ClusternodeModule} from './clusternode/clusternode.module'
 import {ClustergroupModule} from './clustergroup/clustergroup.module'
 import {JobModule} from './job/job.module'
-import {JobgroupModule} from './jobgroup/jobgroup.module'
+import {JobGroupModule} from './jobgroup/jobgroup.module'
 
 import {AppController} from './app.controller'
 import {AppService} from './app.service'
@@ -24,7 +24,7 @@ import {AppUploadService} from './app.uploadService'
         ClusternodeModule,
         ClustergroupModule,
         JobModule,
-        JobgroupModule,
+        JobGroupModule,
     ],
     controllers: [
         AppController,

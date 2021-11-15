@@ -1,9 +1,19 @@
-import { Module } from '@nestjs/common';
-import { JobgroupController } from './jobgroup.controller';
-import { JobgroupService } from './jobgroup.service';
+import {Module} from '@nestjs/common'
+import {DatabaseModule} from '../database/database.module'
+import {JobGroupController} from './jobgroup.controller'
+import {JobGroupService} from './jobgroup.service'
+import {jobGroupProviders} from './jobgroup.provider'
 
 @Module({
-  controllers: [JobgroupController],
-  providers: [JobgroupService]
+    imports: [
+        DatabaseModule,
+    ],
+    controllers: [
+        JobGroupController,
+    ],
+    providers: [
+        ...jobGroupProviders,
+        JobGroupService,
+    ],
 })
-export class JobgroupModule {}
+export class JobGroupModule {}

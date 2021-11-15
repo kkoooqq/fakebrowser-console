@@ -31,9 +31,8 @@ export class DeviceDescController {
         return this.deviceDescService.get(id)
     }
 
-    @Put(':id')
-    update(@Param('id') id, @Body() dd: DeviceDesc): Promise<UpdateResult> {
-        dd.id = Number(id)
+    @Put()
+    update(@Body() dd: DeviceDesc): Promise<UpdateResult> {
         console.log('Update #' + dd.id)
         return this.deviceDescService.update(dd)
     }

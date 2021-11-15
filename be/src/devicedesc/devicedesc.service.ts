@@ -30,15 +30,15 @@ export class DeviceDescService {
         return await this.deviceDescRepository.findOne(id)
     }
 
+    async delete(id): Promise<DeleteResult> {
+        return await this.deviceDescRepository.delete(id)
+    }
+
     async getPage(page: number, per_page: number): Promise<[DeviceDesc[], number]> {
         return await this.deviceDescRepository.findAndCount({
             skip: page * per_page,
             take: per_page,
         })
-    }
-
-    async delete(id): Promise<DeleteResult> {
-        return await this.deviceDescRepository.delete(id)
     }
 
     async saveJson(json: string): Promise<DeviceDesc> {
