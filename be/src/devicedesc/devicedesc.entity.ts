@@ -11,10 +11,10 @@ export class DeviceDesc {
     @Column('int')
     group_id: number
 
-    @Column({length:300})
+    @Column({length: 300})
     userAgent: string
 
-    @Column({length:100})
+    @Column({length: 100})
     platform: string
 
     @Column('int')
@@ -23,11 +23,14 @@ export class DeviceDesc {
     @Column('int')
     screen_height: number
 
-    @Column({length:300})
+    @Column({length: 300})
     languages: string
 
     @Column()
     deviceDesc: string
+
+    @Column()
+    md5: string
 
     @Column()
     created: Date

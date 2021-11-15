@@ -28,9 +28,9 @@ export class DeviceDescService {
         return await this.deviceDescRepository.findOne(id)
     }
 
-    async getPage(page: number, per_page: number): Promise<DeviceDesc[]> {
-        return await this.deviceDescRepository.find({
-            skip: (page - 1) * per_page,
+    async getPage(page: number, per_page: number): Promise<[DeviceDesc[], number]> {
+        return await this.deviceDescRepository.findAndCount({
+            skip: page * per_page,
             take: per_page,
         })
     }

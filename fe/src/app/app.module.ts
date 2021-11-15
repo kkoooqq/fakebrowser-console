@@ -13,6 +13,8 @@ import {MatDialogModule} from '@angular/material/dialog'
 import {MatTableModule} from '@angular/material/table'
 import {MatTabsModule} from '@angular/material/tabs'
 import {MatSortModule} from '@angular/material/sort'
+import {MatPaginatorModule} from '@angular/material/paginator'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 // 3party
 import {FileUploadModule} from 'ng2-file-upload'
@@ -67,6 +69,8 @@ import {DeviceDescGroupService} from './services/devicedesc-group.service'
         MatDialogModule,
         MatSortModule,
         MatTabsModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
         FileUploadModule,
     ],
     providers: [

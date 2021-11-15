@@ -8,6 +8,7 @@ export interface DeviceDescEntity {
     screen_height: number
     languages: string
     deviceDesc: string
+    md5: string
     created: Date
     updated: Date
 }

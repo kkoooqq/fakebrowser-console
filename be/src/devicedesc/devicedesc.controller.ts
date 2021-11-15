@@ -22,7 +22,7 @@ export class DeviceDescController {
     }
 
     @Get('/page/:page/:per_page')
-    getPage(@Param('page') page, @Param('per_page') per_page): Promise<DeviceDesc[]> {
+    getPage(@Param('page') page, @Param('per_page') per_page): Promise<[DeviceDesc[], number]> {
         return this.deviceDescService.getPage(page, per_page)
     }
 

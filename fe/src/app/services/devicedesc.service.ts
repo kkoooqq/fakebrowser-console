@@ -19,8 +19,8 @@ export class DeviceDescService {
         return this.http.get<DeviceDescEntity[]>(url)
     }
 
-    getByPage(page: number, per_page: number): Observable<DeviceDescEntity[]> {
+    getByPage(page: number, per_page: number): Observable<[DeviceDescEntity[], number]> {
         const url = `/api/devicedesc/page/${page}/${per_page}`
-        return this.http.get<DeviceDescEntity[]>(url)
+        return this.http.get<[DeviceDescEntity[], number]>(url)
     }
 }

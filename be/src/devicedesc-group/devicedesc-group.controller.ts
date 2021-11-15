@@ -21,7 +21,7 @@ export class DeviceDescGroupController {
     }
 
     @Get('/page/:page/:per_page')
-    getPage(@Param('page') page, @Param('per_page') per_page): Promise<DeviceDescGroup[]> {
+    getPage(@Param('page') page, @Param('per_page') per_page): Promise<[DeviceDescGroup[], number]> {
         return this.deviceDescGroupService.getPage(page, per_page)
     }
 
