@@ -34,4 +34,9 @@ export class JobGroupService {
         const url = `${environment.apiUrl}/api/jobgroup/${jobGroup.id}`
         return this.http.delete<boolean>(url)
     }
+
+    active(jobGroup: JobGroupEntity): Observable<boolean> {
+        const url = `${environment.apiUrl}/api/jobgroup/active`
+        return this.http.put<boolean>(url, {id: jobGroup.id})
+    }
 }

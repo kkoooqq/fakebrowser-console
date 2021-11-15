@@ -14,6 +14,12 @@ export class JobGroupController {
         return this.jobGroupService.create(entity)
     }
 
+    @Put('/active')
+    async activeJobGroup(@Body() id: any): Promise<boolean> {
+        await this.jobGroupService.activeJobGroup(id.id)
+        return true
+    }
+
     @Get()
     getAll(): Promise<JobGroup[]> {
         return this.jobGroupService.getAll()

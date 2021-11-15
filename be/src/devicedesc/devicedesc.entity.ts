@@ -35,9 +35,13 @@ export class DeviceDesc {
     @Column()
     md5: string
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     created: Date
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     updated: Date
 }

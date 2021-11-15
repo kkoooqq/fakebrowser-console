@@ -8,12 +8,18 @@ export class JobGroup {
     @Column({length: 100})
     name: string
 
-    @Column('boolean')
-    activated: boolean
+    @Column('boolean', {
+        default: false,
+    })
+    activated: boolean = false
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     created: Date
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     updated: Date
 }

@@ -32,9 +32,13 @@ export class Job {
     @Column()
     headless: boolean
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     created: Date
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     updated: Date
 }

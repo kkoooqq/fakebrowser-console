@@ -1,19 +1,41 @@
 <h2 mat-dialog-title>Job Groups</h2>
 <mat-dialog-content class="mat-typography">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="dataSource">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <!-- id column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> *</th>
+      <th mat-header-cell *matHeaderCellDef> *</th>
       <td mat-cell *matCellDef="let row"> {{row.id}} </td>
     </ng-container>
+    <!-- name column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+      <th mat-header-cell *matHeaderCellDef> Name</th>
       <td mat-cell *matCellDef="let row"> {{row.name}} </td>
     </ng-container>
+    <!-- rows -->
     <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumn;" (click)="openEditJobGroupDialog(row)"></tr>
   </table>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+  <button mat-button *ngIf="!selection.isEmpty()">Delete</button>
+  <button mat-button (click)="openAddJobGroupDialog()">Add Group</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
 </mat-dialog-actions>
 

@@ -3,6 +3,8 @@ import {HttpClientModule} from '@angular/common/http'
 import {BrowserModule} from '@angular/platform-browser'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
+import {FormsModule} from '@angular/forms'
+
 // materials
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatSidenavModule} from '@angular/material/sidenav'
@@ -15,6 +17,8 @@ import {MatTabsModule} from '@angular/material/tabs'
 import {MatSortModule} from '@angular/material/sort'
 import {MatPaginatorModule} from '@angular/material/paginator'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import {MatCheckboxModule} from '@angular/material/checkbox'
+import {MatFormFieldModule} from '@angular/material/form-field'
 
 // 3party
 import {FileUploadModule} from 'ng2-file-upload'
@@ -42,6 +46,7 @@ import {DeviceDescGroupService} from './services/devicedesc-group.service'
 import {JobGroupManageDialogComponent} from './components/jobgroup-managedialog/jobgroup-managedialog.component'
 import {JobGroupEditDialogComponent} from './components/jobgroup-editdialog/jobgroup-editdialog.component'
 import {JobEditDialogComponent} from './components/job-editdialog/job-editdialog.component'
+import {MatInputModule} from '@angular/material/input'
 
 @NgModule({
     declarations: [
@@ -67,6 +72,7 @@ import {JobEditDialogComponent} from './components/job-editdialog/job-editdialog
         HttpClientModule,
         BrowserModule,
         AppRoutingModule,
+        FormsModule,
         BrowserAnimationsModule,
         MatToolbarModule,
         MatSidenavModule,
@@ -79,6 +85,9 @@ import {JobEditDialogComponent} from './components/job-editdialog/job-editdialog
         MatTabsModule,
         MatPaginatorModule,
         MatProgressSpinnerModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatInputModule,
         FileUploadModule,
     ],
     providers: [

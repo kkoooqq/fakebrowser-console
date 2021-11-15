@@ -28,8 +28,17 @@ export class JobGroupService {
         return await this.jobGroupRepository.findOne(id)
     }
 
-    async delete(id): Promise<DeleteResult> {
+    async delete(id: number): Promise<DeleteResult> {
         return await this.jobGroupRepository.delete(id)
     }
 
+    async activeJobGroup(id: number): Promise<boolean> {
+        let sql = `update job_group set activated=0`
+        await this.jobGroupRepository.query(sql)
+
+        sql = `update job_group set activated=1 where id=${id}`
+        await this.jobGroupRepository.query(sql)
+
+        return true
+    }
 }

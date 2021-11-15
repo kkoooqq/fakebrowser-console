@@ -11,9 +11,13 @@ export class DeviceDescGroup {
     @Column('int')
     count: number
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     created: Date
 
-    @Column()
+    @Column('datetime', {
+        default: () => 'CURRENT_TIMESTAMP',
+    })
     updated: Date
 }

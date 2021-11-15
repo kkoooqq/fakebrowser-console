@@ -1,19 +1,14 @@
 <h2 mat-dialog-title>Job Groups</h2>
 <mat-dialog-content class="mat-typography">
-  <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> *</th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
-      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
-  </table>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Job Group Name</mat-label>
+      <input matInput placeholder="" [(ngModel)]="data.jobGroup.name" name="name">
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+  <button mat-button [mat-dialog-close]="true">Close</button>
+  <button mat-button cdkFocusInitial [disabled]="!data.jobGroup.name.length" (click)="conformButtonTapped()">Confirm</button>
 </mat-dialog-actions>
 
