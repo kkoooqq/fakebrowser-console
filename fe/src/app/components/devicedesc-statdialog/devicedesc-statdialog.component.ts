@@ -38,12 +38,12 @@ export class DeviceDescStatDialogComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.deviceDescGroupService.getAll().subscribe((ddGroups) => {
-            this.dataSource = new MatTableDataSource(ddGroups)
-        })
     }
 
     ngAfterViewInit() {
+        this.deviceDescGroupService.getAll().subscribe((ddGroups) => {
+            this.dataSource = new MatTableDataSource(ddGroups)
+        })
     }
 
 }

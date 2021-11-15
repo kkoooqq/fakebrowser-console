@@ -33,4 +33,9 @@ export class JobService {
         const url = '/api/job'
         return this.http.put<boolean>(url, job)
     }
+
+    delete(job: JobEntity): Observable<boolean> {
+        const url = `/api/job/${job.id}`
+        return this.http.delete<boolean>(url)
+    }
 }

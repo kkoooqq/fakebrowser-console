@@ -2,7 +2,8 @@ import {AfterViewInit, Component, OnInit} from '@angular/core'
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog'
 import {JobEntity} from '../../interfaces/job'
 import {JobService} from '../../services/job.service'
-import {JobEditGroupDialogComponent} from '../job-editgroupdialog/job-editgroupdialog.component'
+import {JobGroupManageDialogComponent} from '../jobgroup-managedialog/jobgroup-managedialog.component'
+import {JobEditDialogComponent} from '../job-editdialog/job-editdialog.component'
 
 @Component({
     selector: 'app-job',
@@ -17,6 +18,7 @@ export class JobComponent implements OnInit, AfterViewInit {
     constructor(
         private readonly jobService: JobService,
         public readonly editGroupDialog: MatDialog,
+        public readonly editDialog: MatDialog,
     ) {
     }
 
@@ -27,7 +29,11 @@ export class JobComponent implements OnInit, AfterViewInit {
     }
 
     openEditGroupsDialog() {
-        const dialog = this.editGroupDialog.open(JobEditGroupDialogComponent)
+        const dialog = this.editGroupDialog.open(JobGroupManageDialogComponent)
+    }
+
+    openJobEditDialog() {
+        const dialog = this.editGroupDialog.open(JobEditDialogComponent)
     }
 
 }
