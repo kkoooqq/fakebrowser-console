@@ -1,5 +1,4 @@
 import {Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UploadedFile, UseInterceptors} from '@nestjs/common'
-import {deviceDescProviders} from './devicedesc.provider'
 import {DeviceDescService} from './devicedesc.service'
 import {DeviceDesc} from './devicedesc.entity'
 import {DeleteResult, UpdateResult} from 'typeorm'
