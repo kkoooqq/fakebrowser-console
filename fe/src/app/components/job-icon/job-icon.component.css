@@ -1,0 +1,6 @@
+.job-icon {
+  display: flex;
+  border: 3px dashed gray;
+  width: 200px;
+  height: 250px;
+}

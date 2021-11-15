@@ -12,7 +12,11 @@
   </mat-toolbar>
   <mat-tab-group #jobGroupTab>
     <mat-tab *ngFor="let group of jobGroups" [label]="group.name">
-      {{group.name}}
+
+      <div class="job-icon-container">
+        <app-job-icon *ngFor="let item of (this.jobInfos[group.id] || [])" [jobIcon]="item"></app-job-icon>
+      </div>
+
     </mat-tab>
   </mat-tab-group>
 </ng-container>

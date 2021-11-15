@@ -8,6 +8,14 @@ import {JobEditDialogComponent} from '../job-editdialog/job-editdialog.component
 import {JobGroupService} from '../../services/jobgroup.service'
 import {JobGroupEntity} from '../../interfaces/jobgroup'
 import {MatTabGroup} from '@angular/material/tabs'
+import {combineLatest, combineLatestAll, Observable} from 'rxjs'
+
+export class JobIconInfo {
+    constructor(
+        public jobEntity?: JobEntity,
+    ) {
+    }
+}
 
 @Component({
     selector: 'app-job',
@@ -17,7 +25,8 @@ import {MatTabGroup} from '@angular/material/tabs'
 export class JobComponent implements OnInit, AfterViewInit {
 
     jobGroups: JobGroupEntity[] = []
-    data: JobEntity[] = []
+    jobs: JobEntity[] = []
+    jobInfos: Record<number, JobIconInfo[]> = {}
     isLoadingResults = true
     @ViewChild('jobGroupTab') jobGroupTab: MatTabGroup
 
@@ -52,7 +61,48 @@ export class JobComponent implements OnInit, AfterViewInit {
         this.jobGroupService.getAll().subscribe((jobGroups) => {
             this.jobGroups = jobGroups
             this.jobGroupTab.selectedIndex = jobGroups.findIndex(e => e.activated)
+
+            const jobInfos: Record<number, JobIconInfo[]> = {}
+            for (const jobGroup of jobGroups) {
+                jobInfos[jobGroup.id] = []
+            }
+
+            this.jobService.getAll().subscribe((jobs) => {
+                for (const job of jobs) {
+                    let jobParts = jobInfos[job.group_id]
+                    jobParts!.push(new JobIconInfo(job))
+                }
+
+                // at least 12 icons per group
+                for (const [group_id, jobIcons] of Object.entries(jobInfos)) {
+                    jobIcons.push(new JobIconInfo())
+
+                    for (; jobIcons.length < 12;) {
+                        jobIcons.push(new JobIconInfo())
+                    }
+                }
+
+                this.jobInfos = jobInfos
+                this.jobs = jobs
+            })
         })
+    }
+
+    get currentTabJobIcons(): JobIconInfo[] {
+        if (!this.jobGroupTab.selectedIndex) {
+            return []
+        }
+
+        if (!this.jobGroups) {
+            return []
+        }
+
+        const jobGroup = this.jobGroups[this.jobGroupTab.selectedIndex]
+        if (!jobGroup) {
+            return []
+        }
+
+        return this.jobInfos[jobGroup.id] || []
     }
 
     openEditGroupsDialog() {

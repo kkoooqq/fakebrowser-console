@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http'
 import {Observable} from 'rxjs'
 import {JobEntity} from '../interfaces/job'
 import {environment} from '../../environments/environment'
+import {JobGroupEntity} from '../interfaces/jobgroup'
 
 @Injectable({
     providedIn: 'root',

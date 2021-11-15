@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http'
 import {Observable} from 'rxjs'
 import {JobGroupEntity} from '../interfaces/jobgroup'
 import {environment} from '../../environments/environment'
+import {JobEntity} from '../interfaces/job'
 
 @Injectable({
     providedIn: 'root',
@@ -39,4 +40,10 @@ export class JobGroupService {
         const url = `${environment.apiUrl}/api/jobgroup/active`
         return this.http.put<boolean>(url, {id: jobGroup.id})
     }
+
+    getJobs(jobGroup: JobGroupEntity): Observable<JobEntity[]> {
+        const url = `${environment.apiUrl}/api/jobgroup/jobs/${jobGroup.id}`
+        return this.http.get<JobEntity[]>(url)
+    }
+
 }

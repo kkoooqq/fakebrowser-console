@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common'
 import {JobGroupService} from './jobgroup.service'
 import {JobGroup} from './jobgroup.entity'
+import {Job} from '../job/job.entity'
 
 @Controller('/api/jobgroup')
 export class JobGroupController {
@@ -41,4 +42,8 @@ export class JobGroupController {
         return (await this.jobGroupService.delete(id)).affected > 0
     }
 
+    @Get('/jobs/:id')
+    getJobs(@Param('id') id): Promise<Job[]> {
+        return this.jobGroupService.getJobs(id)
+    }
 }

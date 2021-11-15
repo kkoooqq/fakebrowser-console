@@ -1,13 +1,16 @@
 import {Inject, Injectable} from '@nestjs/common'
-import {JOB_GROUP_REPOSITORY} from '../constants'
+import {JOB_GROUP_REPOSITORY, JOB_REPOSITORY} from '../constants'
 import {DeleteResult, InsertResult, Repository, UpdateResult} from 'typeorm'
 import {JobGroup} from './jobgroup.entity'
+import {Job} from '../job/job.entity'
 
 @Injectable()
 export class JobGroupService {
     constructor(
         @Inject(JOB_GROUP_REPOSITORY)
         private readonly jobGroupRepository: Repository<JobGroup>,
+        @Inject(JOB_REPOSITORY)
+        private readonly jobRepository: Repository<Job>,
     ) {
     }
 
@@ -40,5 +43,13 @@ export class JobGroupService {
         await this.jobGroupRepository.query(sql)
 
         return true
+    }
+
+    async getJobs(id: number): Promise<Job[]> {
+        return await this.jobRepository.find({
+            where: {
+                id,
+            },
+        })
     }
 }

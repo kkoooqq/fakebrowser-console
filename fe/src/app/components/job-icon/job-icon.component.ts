@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core'
+import {JobIconInfo} from '../job-panel/job.component'
 
 @Component({
-  selector: 'app-job-icon',
-  templateUrl: './job-icon.component.html',
-  styleUrls: ['./job-icon.component.css']
+    selector: 'app-job-icon',
+    templateUrl: './job-icon.component.html',
+    styleUrls: ['./job-icon.component.css'],
 })
 export class JobIconComponent implements OnInit {
 
-  constructor() { }
+    @Input() jobIcon: JobIconInfo
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
 
 }
