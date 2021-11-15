@@ -38,9 +38,10 @@ import {DeviceDescDetailsDialogComponent} from './components/devicedesc-detailsd
 
 // services
 import {DeviceDescService} from './services/devicedesc.service'
-import {DeviceDescGroupService} from './services/devicedesc-group.service';
-import { JobGroupManageDialogComponent } from './components/jobgroup-managedialog/jobgroup-managedialog.component';
-import { JobEditDialogComponent } from './components/job-editdialog/job-editdialog.component'
+import {DeviceDescGroupService} from './services/devicedesc-group.service'
+import {JobGroupManageDialogComponent} from './components/jobgroup-managedialog/jobgroup-managedialog.component'
+import {JobGroupEditDialogComponent} from './components/jobgroup-editdialog/jobgroup-editdialog.component'
+import {JobEditDialogComponent} from './components/job-editdialog/job-editdialog.component'
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { JobEditDialogComponent } from './components/job-editdialog/job-editdial
         DeviceDescImportDialogComponent,
         DeviceDescDetailsDialogComponent,
         JobGroupManageDialogComponent,
+        JobGroupEditDialogComponent,
         JobEditDialogComponent,
     ],
     imports: [
