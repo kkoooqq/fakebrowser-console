@@ -51,6 +51,7 @@ export class JobComponent implements OnInit, AfterViewInit {
         // TODO: loading
         this.jobGroupService.getAll().subscribe((jobGroups) => {
             this.jobGroups = jobGroups
+            this.jobGroupTab.selectedIndex = jobGroups.findIndex(e => e.activated)
         })
     }
 
@@ -61,7 +62,11 @@ export class JobComponent implements OnInit, AfterViewInit {
         })
     }
 
-    openJobEditDialog() {
+    openJobEditDialog(job: JobEntity) {
+        const dialog = this.editGroupDialog.open(JobEditDialogComponent)
+    }
+
+    openNewJobDialog() {
         const dialog = this.editGroupDialog.open(JobEditDialogComponent)
     }
 
