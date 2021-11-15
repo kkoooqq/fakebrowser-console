@@ -38,9 +38,12 @@ table {
 }
 
 /* Column Widths */
-.mat-column-number,
+.mat-column-number {
+  max-width: 80px;
+}
+
 .mat-column-state {
-  max-width: 64px;
+  min-width: 200px;
 }
 
 .mat-column-created {

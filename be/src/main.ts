@@ -13,10 +13,6 @@ async function bootstrap() {
     //     credentials: true,
     // })
 
-    app.useStaticAssets(path.resolve(__dirname, '../../fe/dist/fakebrowser-console'), {
-        prefix: '/',
-    })
-
     await app.listen(4201)
 }
 

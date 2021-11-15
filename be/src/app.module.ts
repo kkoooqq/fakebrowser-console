@@ -1,4 +1,7 @@
+import * as path from 'path'
+
 import {Module} from '@nestjs/common'
+import {ServeStaticModule} from '@nestjs/serve-static'
 
 import {DeviceDescModule} from './devicedesc/devicedesc.module'
 import {DevicedescGroupModule} from './devicedesc-group/devicedesc-group.module'
@@ -13,6 +16,9 @@ import {AppUploadService} from './app.uploadService'
 
 @Module({
     imports: [
+        ServeStaticModule.forRoot({
+            rootPath: path.resolve(__dirname, '../../fe/dist/fakebrowser-console'),
+        }),
         DeviceDescModule,
         DevicedescGroupModule,
         ClusternodeModule,
