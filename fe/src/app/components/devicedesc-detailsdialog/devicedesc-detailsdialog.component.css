@@ -1,0 +1,10 @@
+.device-desc-details-container {
+  display: flex;
+  align-items: stretch;
+  min-width: 600px;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.device-desc-details-container textarea {
+}

@@ -9,6 +9,7 @@ import {JobGroupService} from '../../services/jobgroup.service'
 import {JobGroupEntity} from '../../interfaces/jobgroup'
 import {MatTabGroup} from '@angular/material/tabs'
 import {combineLatest, combineLatestAll, Observable} from 'rxjs'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 export class JobIconInfo {
     constructor(
@@ -58,6 +59,11 @@ export class JobComponent implements OnInit, AfterViewInit {
 
     private requestJobGroups() {
         // TODO: loading
+
+        BrowserAnimationsModule.withConfig({
+            disableAnimations: true
+        })
+
         this.jobGroupService.getAll().subscribe((jobGroups) => {
             this.jobGroups = jobGroups
             this.jobGroupTab.selectedIndex = jobGroups.findIndex(e => e.activated)
@@ -84,6 +90,10 @@ export class JobComponent implements OnInit, AfterViewInit {
 
                 this.jobInfos = jobInfos
                 this.jobs = jobs
+
+                BrowserAnimationsModule.withConfig({
+                    disableAnimations: false
+                })
             })
         })
     }

@@ -18,4 +18,8 @@ export class DeviceDescDetailsDialogComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    get formattedDesc(): string {
+        return JSON.stringify(JSON.parse(this.data.deviceDesc), null, 2)
+    }
+
 }

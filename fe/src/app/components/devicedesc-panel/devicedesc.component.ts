@@ -67,15 +67,15 @@ export class DeviceDescComponent implements OnInit, AfterViewInit {
 
     openImportDialog() {
         const dialog = this.importDialog.open(DeviceDescImportDialogComponent)
+
+        dialog.afterClosed().subscribe(() => {
+            this.onImportDialogClosed.emit()
+        })
     }
 
     openDeviceDescDialog(deviceDesc: DeviceDescEntity) {
         const dialog = this.deviceDescDetailsDialog.open(DeviceDescDetailsDialogComponent, {
             data: deviceDesc,
-        })
-
-        dialog.afterClosed().subscribe(() => {
-            this.onImportDialogClosed.emit()
         })
     }
 

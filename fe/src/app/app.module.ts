@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core'
 import {HttpClientModule} from '@angular/common/http'
 import {BrowserModule} from '@angular/platform-browser'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {NoopAnimationsModule} from '@angular/platform-browser/animations'
 import {FormsModule} from '@angular/forms'
 
 // materials
@@ -79,6 +80,7 @@ import {DeviceDescGroupService} from './services/devicedesc-group.service'
         AppRoutingModule,
         FormsModule,
         BrowserAnimationsModule,
+        NoopAnimationsModule,
         MatToolbarModule,
         MatSidenavModule,
         MatListModule,
