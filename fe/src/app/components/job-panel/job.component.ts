@@ -88,6 +88,27 @@ export class JobComponent implements OnInit, AfterViewInit {
         })
     }
 
+    get currentSelectedGroupId(): number {
+        if (this.jobGroupTab.selectedIndex === null) {
+            return 0
+        }
+
+        if (!this.jobGroupTab._tabs.length) {
+            return 0
+        }
+
+        if (!this.jobGroups) {
+            return 0
+        }
+
+        const jobGroup = this.jobGroups[this.jobGroupTab.selectedIndex]
+        if (!jobGroup) {
+            return 0
+        }
+
+        return jobGroup.id
+    }
+
     get currentTabJobIcons(): JobIconInfo[] {
         if (!this.jobGroupTab.selectedIndex) {
             return []
@@ -112,13 +133,38 @@ export class JobComponent implements OnInit, AfterViewInit {
         })
     }
 
-    openJobEditDialog(job: JobEntity) {
-        const dialog = this.editGroupDialog.open(JobEditDialogComponent)
+    openJobEditDialog(job: JobEntity | JobIconInfo) {
+        let jobEntity = null
+        if (job instanceof JobIconInfo) {
+            jobEntity = job.jobEntity
+        } else {
+            jobEntity = job
+        }
+
+        const dialog = this.editGroupDialog.open(JobEditDialogComponent, {
+            data: {
+                isAdd: !jobEntity,
+                group_id: this.currentSelectedGroupId,
+                job: jobEntity,
+            },
+        })
+
+        dialog.afterClosed().subscribe(() => {
+            this.requestJobGroups()
+        })
     }
 
     openNewJobDialog() {
-        const dialog = this.editGroupDialog.open(JobEditDialogComponent)
+        const dialog = this.editGroupDialog.open(JobEditDialogComponent, {
+            data: {
+                isAdd: true,
+                group_id: this.currentSelectedGroupId,
+                job: null,
+            },
+        })
+
+        dialog.afterClosed().subscribe(() => {
+            this.requestJobGroups()
+        })
     }
-
-
 }

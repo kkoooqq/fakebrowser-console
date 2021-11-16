@@ -1,0 +1,14 @@
+.job-edit-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.job-script {
+  min-width: 400px;
+}
+
+.job-script-textarea {
+  min-width: 400px;
+  min-height: 250px;
+}

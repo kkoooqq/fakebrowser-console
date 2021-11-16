@@ -14,23 +14,43 @@ export class Job {
     @Column('longtext')
     script: string
 
-    @Column()
+    @Column({
+        default: false,
+    })
     doNotHook: boolean
 
-    @Column()
+    @Column({
+        default: 'Windows',
+    })
     platform: string
 
-    @Column()
+    @Column({
+        default: 15 * 60 * 1000,
+    })
     maxSurvivalTime: number
 
-    @Column()
+    @Column({
+        default: false,
+    })
     displayUserActionLayer: boolean
 
     @Column()
     userDataDir: string
 
-    @Column()
+    @Column({
+        default: false,
+    })
     headless: boolean
+
+    @Column({
+        default: true,
+    })
+    shutdownWhenDone: boolean
+
+    @Column({
+        default: '',
+    })
+    browserPath?: string = ''
 
     @Column('datetime', {
         default: () => 'CURRENT_TIMESTAMP',

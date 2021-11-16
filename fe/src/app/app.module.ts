@@ -19,6 +19,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
+import {MatSelectModule} from '@angular/material/select'
 
 // 3party
 import {FileUploadModule} from 'ng2-file-upload'
@@ -92,6 +93,7 @@ import {DeviceDescGroupService} from './services/devicedesc-group.service'
         MatCheckboxModule,
         MatFormFieldModule,
         MatInputModule,
+        MatSelectModule,
         FileUploadModule,
     ],
     providers: [

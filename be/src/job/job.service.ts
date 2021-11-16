@@ -1,13 +1,19 @@
+import * as path from 'path'
+import * as fs from 'fs-extra'
+
 import {Inject, Injectable} from '@nestjs/common'
 import {DeleteResult, InsertResult, Repository, UpdateResult} from 'typeorm'
-import {JOB_REPOSITORY} from '../constants'
+import {DEVICE_DESC_REPOSITORY, JOB_REPOSITORY} from '../constants'
 import {Job} from './job.entity'
+import {DeviceDesc} from '../devicedesc/devicedesc.entity'
 
 @Injectable()
 export class JobService {
     constructor(
         @Inject(JOB_REPOSITORY)
         private readonly jobRepository: Repository<Job>,
+        @Inject(DEVICE_DESC_REPOSITORY)
+        private readonly deviceDescRepository: Repository<DeviceDesc>,
     ) {
     }
 
@@ -35,8 +41,62 @@ export class JobService {
         })
     }
 
-    async delete(id): Promise<DeleteResult> {
+    async delete(id: number): Promise<DeleteResult> {
         return await this.jobRepository.delete(id)
     }
 
+    async play(id: number) {
+        // get job data
+        const job = await this.get(id)
+
+        const userDataDir = path.resolve(__dirname, `../../job-cache/fakeBrowserJobData-${id}`)
+        fs.mkdirSync(userDataDir, {recursive: true})
+
+        const ddFileName = path.resolve(userDataDir, './__fb_dd.json')
+
+        if (!fs.existsSync(ddFileName)) {
+            // get platform data
+            const platformData = await this.deviceDescRepository.createQueryBuilder()
+                .orderBy('RAND()')
+                .getOne()
+
+            if (platformData) {
+                fs.writeFileSync(ddFileName, platformData.deviceDesc)
+            }
+        }
+
+        const script = `
+const {FakeBrowser} = require('fakebrowser');
+
+!(async () => {
+    const windowsDD = require('./__fb_dd.json');
+    const builder = new FakeBrowser.Builder()
+        .deviceDescriptor(windowsDD)
+        .displayUserActionLayer(${job.displayUserActionLayer})
+        .vanillaLaunchOptions({
+            headless: ${job.headless},
+            ${job.browserPath ? 'executablePath: \'' + job.browserPath + '\',' : ''} 
+        })
+        .userDataDir('${userDataDir}');
+
+    const fakeBrowser = await builder.launch();
+
+    ${job.script}
+
+    if (${job.shutdownWhenDone}) {
+        await fakeBrowser.shutdown();
+    }
+})();
+        `
+
+        const scriptFile = path.resolve(userDataDir, './__fb_script.js')
+        fs.writeFileSync(scriptFile, script)
+
+        const {spawn, execSync, exec} = require('child_process')
+        const cmd = 'node ' + scriptFile
+
+        console.log(cmd)
+
+        exec(cmd)
+    }
 }

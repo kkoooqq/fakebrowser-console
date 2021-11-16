@@ -40,4 +40,9 @@ export class JobService {
         const url = `${environment.apiUrl}/api/job/${job.id}`
         return this.http.delete<boolean>(url)
     }
+
+    play(job: JobEntity): Observable<boolean> {
+        const url = `${environment.apiUrl}/api/job/play`
+        return this.http.put<boolean>(url, {id: job.id})
+    }
 }

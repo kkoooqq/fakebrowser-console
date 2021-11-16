@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core'
 import {JobIconInfo} from '../job-panel/job.component'
+import {JobService} from '../../services/job.service'
 
 @Component({
     selector: 'app-job-icon',
@@ -10,10 +11,17 @@ export class JobIconComponent implements OnInit {
 
     @Input() jobIcon: JobIconInfo
 
-    constructor() {
+    constructor(
+        private jobService: JobService,
+    ) {
     }
 
     ngOnInit(): void {
     }
 
+    onLaunchButtonClick($event: Event) {
+        $event.stopPropagation()
+
+        this.jobService.play(this.jobIcon.jobEntity!).subscribe(e => e)
+    }
 }

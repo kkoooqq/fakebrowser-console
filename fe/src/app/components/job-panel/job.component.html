@@ -14,7 +14,7 @@
     <mat-tab *ngFor="let group of jobGroups" [label]="group.name">
 
       <div class="job-icon-container">
-        <app-job-icon *ngFor="let item of (this.jobInfos[group.id] || [])" [jobIcon]="item"></app-job-icon>
+        <app-job-icon *ngFor="let item of (this.jobInfos[group.id] || [])" [jobIcon]="item" (click)="openJobEditDialog(item)"></app-job-icon>
       </div>
 
     </mat-tab>

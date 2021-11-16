@@ -1,1 +1,49 @@
-<p>job-editdialog works!</p>
+<h2 mat-dialog-title>{{ data.isAdd ? 'Add' : 'Edit' }} Job</h2>
+<mat-dialog-content class="mat-typography job-edit-dialog">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.job!.name">
+    <mat-error *ngIf="displayNameError">Name cannot be none</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Browser Path</mat-label>
+    <input matInput [(ngModel)]="data.job!.browserPath">
+  </mat-form-field>
+  <div class="example-container">
+    <mat-checkbox [(ngModel)]="data.job!.doNotHook">Do Not Hook Anything</mat-checkbox>
+  </div>
+  <div class="example-container">
+    <mat-checkbox [(ngModel)]="data.job!.headless">Headless</mat-checkbox>
+  </div>
+  <div class="example-container">
+    <mat-checkbox [(ngModel)]="data.job!.displayUserActionLayer">Display user action layer</mat-checkbox>
+  </div>
+  <div class="example-container">
+    <mat-checkbox [(ngModel)]="data.job!.shutdownWhenDone">Shut down the browser after the script is executed</mat-checkbox>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Max Survival Time</mat-label>
+    <input matInput type="number" placeholder="" min="10" [(ngModel)]="data.job!.maxSurvivalTime">
+    <span matSuffix>seconds</span>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Platform</mat-label>
+    <mat-select [(ngModel)]="data.job!.platform">
+      <mat-option value="Windows">Windows</mat-option>
+      <mat-option value="macOS">macOS</mat-option>
+      <mat-option value="Linux">Linux</mat-option>
+      <mat-option value="iPhone">iPhone</mat-option>
+      <mat-option value="iPod">iPod</mat-option>
+      <mat-option value="iPad">iPad</mat-option>
+      <mat-option value="Android">Android</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="job-script">
+    <mat-label>Script</mat-label>
+    <textarea matInput [(ngModel)]="data.job!.script" class="job-script-textarea"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true">Close</button>
+  <button mat-button cdkFocusInitial (click)="saveResult()">Confirm</button>
+</mat-dialog-actions>

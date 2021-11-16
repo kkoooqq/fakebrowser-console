@@ -1,3 +1,10 @@
 <div class="job-icon">
-
+  <div *ngIf="!!jobIcon.jobEntity" class="job-icon-name">{{jobIcon.jobEntity.name}}</div>
+  <div *ngIf="!jobIcon.jobEntity" class="job-icon-name"><span class="material-icons no-job">add</span></div>
+  <button *ngIf="!!jobIcon.jobEntity" mat-flat-button color="primary" class="job-launch-button" (click)="onLaunchButtonClick($event)">
+    <span class="material-icons">
+      play_circle_filled
+    </span>
+    Launch Instance
+  </button>
 </div>

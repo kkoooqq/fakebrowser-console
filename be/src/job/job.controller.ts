@@ -5,39 +5,45 @@ import {Job} from './job.entity'
 @Controller('/api/job')
 export class JobController {
     constructor(
-        private readonly deviceDescService: JobService,
+        private readonly jobService: JobService,
     ) {
     }
 
     @Post()
     create(@Body() dd: Job): Promise<Job> {
-        return this.deviceDescService.create(dd)
+        return this.jobService.create(dd)
     }
 
     @Get()
     getAll(): Promise<Job[]> {
-        return this.deviceDescService.getAll()
+        return this.jobService.getAll()
     }
 
     @Get('/page/:page/:per_page')
     getPage(@Param('page') page, @Param('per_page') per_page): Promise<[Job[], number]> {
-        return this.deviceDescService.getPage(page, per_page)
+        return this.jobService.getPage(page, per_page)
     }
 
     @Get(':id')
     get(@Param('id') id): Promise<Job> {
-        return this.deviceDescService.get(id)
+        return this.jobService.get(id)
+    }
+
+    @Put('/play')
+    async play(@Body() id: any): Promise<boolean> {
+        await this.jobService.play(id.id)
+        return true
     }
 
     @Put()
     async update(@Body() dd: Job): Promise<boolean> {
         console.log('Update #' + dd.id)
-        return (await this.deviceDescService.update(dd)).affected > 0
+        return (await this.jobService.update(dd)).affected > 0
     }
 
     @Delete(':id')
     async delete(@Param('id') id): Promise<boolean> {
-        return (await this.deviceDescService.delete(id)).affected > 0
+        return (await this.jobService.delete(id)).affected > 0
     }
 
 }

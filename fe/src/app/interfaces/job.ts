@@ -1,5 +1,5 @@
 export interface JobEntity {
-    id: number
+    id?: number
     name: string
     group_id: number
     script: string
@@ -7,7 +7,9 @@ export interface JobEntity {
     platform: string
     maxSurvivalTime: number
     displayUserActionLayer: boolean
+    shutdownWhenDone: boolean
     userDataDir: string
+    browserPath?: string
     headless: boolean
     created: Date
     updated: Date
